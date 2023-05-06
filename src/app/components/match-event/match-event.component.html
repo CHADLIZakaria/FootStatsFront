@@ -1,0 +1,42 @@
+<!--
+<div [ngSwitch]="event.type">
+    <div *ngSwitchCase="'Card'">
+        <div [ngSwitch]="event.detail">
+            <div *ngSwitchCase="'Yellow Card'" class="flex items-center gap-2">
+                <span>{{event.time.elapsed}}' min</span>
+                <span [routerLink]="['player', event.player.id]" class="hover:underline cursor-pointer">{{event.player.name}}</span>
+                <div class="bg-yellow-400 w-4 h-5"></div>
+            </div>
+            <div *ngSwitchCase="'Red Card'" class="flex items-center gap-2">
+                <span>{{event.time.elapsed}}' min</span>
+                <span  [routerLink]="['player', event.player.id]" class="hover:underline cursor-pointer">{{event.player.name}}</span>
+                <div class="bg-red-700 w-4 h-5"></div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'Goal'">
+        <div [ngSwitch]="event.detail">
+            <div *ngSwitchCase="'Normal Goal'" class="flex items-center gap-2">
+                <span>{{event.time.elapsed}}' min</span>
+                <span [routerLink]="['player', event.player.id]" class="hover:underline cursor-pointer">{{event.player.name}}</span>
+                <div class="w-4">
+                    <img src="/assets/soccer-ball.png" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngSwitchCase="'subst'">
+        <div class="flex items-center gap-2">
+            <span>{{event.time.elapsed}}' min</span>
+            <span [routerLink]="['player', event.player.id]" class="hover:underline cursor-pointer">{{event.player.name}}</span>
+            <div class="w-4">
+                <img src="/assets/exchange.png" />
+            </div>
+            <span class="flex-1 hover:underline cursor-pointer" [routerLink]="['player', event.player.id]">{{event.assist.name}}</span>
+        </div>
+    </div>
+    
+</div>
+-->

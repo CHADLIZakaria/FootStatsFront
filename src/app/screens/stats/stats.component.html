@@ -1,0 +1,24 @@
+<div class="w-3/4 m-auto mt-3" *ngIf="stats">
+    <div *ngFor="let stat of stats[0].statistics; let i = index" class="flex flex-col items-center">
+        <span class="text-sm">{{stat.type}}</span>
+        <div class="w-full flex gap-0.5">
+            
+            <div class="flex-1 items-center flex gap-2">
+                <span class="w-10">{{ stats[0].statistics[i].value === null ? 0 : stats[0].statistics[i].value }}</span>
+                <div class="flex justify-end w-full bg-gray-200 rounded-l-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-blue-600 h-2.5 rounded-l-full" 
+                        [ngStyle]="{'width': calcultPourcentProgress(stats[0].statistics[i].value, stats[1].statistics[i].value)}">
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 items-center flex gap-2">
+                <div class="w-full bg-gray-200 rounded-r-full h-2.5 dark:bg-gray-700">
+                    <div class="bg-green-400 h-2.5 rounded-r-full" 
+                        [ngStyle]="{'width': calcultPourcentProgress(stats[1].statistics[i].value, stats[0].statistics[i].value)}">
+                    </div>
+                </div>
+                <span class="w-10 text-right">{{ stats[1].statistics[i].value === null ? 0 : stats[1].statistics[i].value }}</span>
+            </div>
+        </div>
+    </div>
+</div>

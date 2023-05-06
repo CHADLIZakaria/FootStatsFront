@@ -1,0 +1,84 @@
+<div class="w-3/4 m-auto px-20">
+    <div class="border-b border-gray-200">
+        <ul class="container flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+            <li class="mr-2">
+                <span 
+                    [ngClass]="currentTab===0 ? 'text-blue-600 border-b-2 border-blue-600' : 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTab(0)" 
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                  Composition
+                </span>
+            </li>
+            <li class="mr-2">
+                <span 
+                    [ngClass]="currentTab===1 ? 'text-blue-600 border-b-2 border-blue-600': 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTab(1)" 
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                    Statistique 
+                </span>
+            </li>
+            <li class="mr-2">
+                <span 
+                    [ngClass]="currentTab===2 ? 'text-blue-600 border-b-2 border-blue-600': 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTab(2)"
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                    Historique
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="w-3/4 m-auto px-20" *ngIf="currentTab===1">
+    <div class="border-b border-gray-200">
+        <ul class="container flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+           <li class="mr-2">
+                <span 
+                    [ngClass]="currentTabStats === 0? 'text-blue-600 border-b-2 border-blue-600': 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTabStats(0)" 
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                    Match
+                </span>
+            </li>
+            <li class="mr-2">
+                <span 
+                    [ngClass]="currentTabStats === 1 ? 'text-blue-600 border-b-2 border-blue-600': 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTabStats(1)" 
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                    {{fixture.teams.home.name}}
+                </span>
+            </li>
+            <li class="mr-2">
+                <span 
+                    [ngClass]="currentTabStats === 2 ? 'text-blue-600 border-b-2 border-blue-600': 'hover:text-gray-600 hover:border-gray-300'"
+                    (click)="changeTabStats(2)" 
+                    class="inline-flex p-4 rounded-t-lg cursor-pointer group">
+                    {{fixture.teams.away.name}}
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="border border-1 flex w-3/4 m-auto mt-2 items-center justify-around py-3" *ngIf="currentTab===0">
+    <div class="flex items-center">
+       <img [src]="fixture.teams.home.logo" class="w-14"/>
+       <span>{{ fixture.teams.home.name }}</span>
+    </div>
+    <p class="text-lg font-semibold">
+        {{fixture.goals.home}}
+        {{fixture.goals.away}} 
+    </p>
+    <div class="flex items-center">
+        <span>{{ fixture.teams.away.name }}</span>
+        <img [src]="fixture.teams.away.logo" class="w-14"/>
+     </div>
+</div>
+
+<div *ngIf="!isLoading">
+    <app-lineup *ngIf="currentTab === 0" [lineups]="fixture.lineups"></app-lineup>
+    <app-stats  *ngIf="currentTab === 1 && currentTabStats === 0" [stats]="fixture.statistics"></app-stats>
+    <app-match-player-stats  *ngIf="currentTab === 1 && currentTabStats === 1" [players]="fixture.players[0]"></app-match-player-stats>
+    <app-match-player-stats  *ngIf="currentTab === 1 && currentTabStats === 2" [players]="fixture.players[1]"></app-match-player-stats>
+    <app-head-to-head  [fixtureId]="fixture.fixture.id" *ngIf="currentTab === 2"></app-head-to-head>
+</div>

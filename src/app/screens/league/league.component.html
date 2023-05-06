@@ -1,0 +1,320 @@
+<div class="mx-2">
+    <!-- Start Player Info -->
+    <div class="border border-2 flex flex-col gap-3 relative player-info drop-shadow-md"> 
+        <img [src]="leagueRanking.league.logo" class="absolute top-1/2 -translate-y-1/2 player-img" />
+        <div class="flex w-full bg-gray-100 items-center">
+            <p class="font-bold">
+                {{leagueRanking.league.name}}
+            </p>
+        </div>
+        <div class="flex justify-end items-center p-2">
+            <p class="flex gap-2 text-md">
+                <span>#{{leagueRanking.league.name}}</span>
+                <span>#{{leagueRanking.league.country}}</span>
+            </p>
+        </div>
+    
+    </div>
+    <!-- End Player Info -->
+    
+    <!-- Start Statistics -->
+    <div class="w-full mt-2 overflow-x-auto ">
+        <div class="bg-gray-800 text-white p-3 rounded-t sticky left-0 flex items-center justify-between">
+            <h4>
+                {{myForm.value.choice==1 ? 'Classements' : myForm.value.choice==2 ?  'Buteurs': 'Assits' }}
+            </h4>
+            <form class="flex gap-x-2" [formGroup]="myForm">
+                <select formControlName="choice" name="choice" class="bg-transparent text-gray-100 text-sm" (change)="onChangeChoice()">
+                    <option class="text-gray-900" value="1">Classement</option>
+                    <option class="text-gray-900" value="2">Buteurs</option>
+                    <option class="text-gray-900" value="3">Asssits</option>
+                </select>
+                <div class="flex items-center p-2.5">
+                    <label>Season</label>
+                    <select formControlName="season" name="season" class="bg-transparent text-gray-100 text-sm block w-full">
+                        <option 
+                            class="text-gray-900"
+                            *ngFor="let league of league.seasons"
+                            [ngValue]="league.year">
+                            {{league.year}}
+                        </option>
+                    </select>
+                </div>
+            </form>
+        </div>
+        <div *ngIf="myForm.value.choice==1">
+            <table class="w-full text-xs text-left text-gray-500 border-collapse border border-slate-400" *ngFor="let groupStanding of leagueRanking.league.standings">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr> 
+                        <th scope="col"  class="py-3 px-2 text-center border border-slate-300">
+                            Club
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Jouer
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Victoires
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Nuls
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Défaites
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Buts marqués
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Buts contres
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Différence de buts
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            Points
+                        </th>
+                        <th scope="col" class="py-3 px-2 text-center border border-slate-300">
+                            5 Dernier
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let standing of groupStanding" class="bg-white hover:bg-gray-50">
+                        <td class="border border-slate-300 p-1">
+                            <div class="flex items-center gap-3 text-center">
+                                {{standing.rank}}
+                                <img [src]="standing.team.logo" class="w-8 h-8"/>
+                                {{standing.team.name}}
+                            </div>
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.played}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.win}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.draw}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.lose}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.goals.for}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.goals.against}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.all.goals.for - standing.all.goals.against}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{standing.points}}
+                        </td>
+                        <td class="border border-slate-300" *ngIf="standing.form!==null">
+                            <span class="flex">
+                                <span *ngFor="let form of standing.form.split('')">
+                                    {{form}}
+                                    <span *ngIf="form==='W'">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-green-500">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>                              
+                                    </span>
+                                    <span *ngIf="form==='L'">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>                                                            
+                                    </span>
+                                    <span *ngIf="form==='D'">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                                                                                    
+                                    </span>                             
+                                </span>
+                            </span>                    
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="myForm.value.choice==2">
+            <table class="w-full text-xs text-left text-gray-500 border-collapse border border-slate-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr> 
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Joueur
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Equipe
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Minutes
+                        </th>
+                        <th  rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Buts
+                        </th>
+                        <th colspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Penalties
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Assists
+                        </th>
+                        <th colspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Cards
+                        </th>
+                    </tr>
+                    <tr> 
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Scored
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Missed
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Yellow
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Red
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let socers of topsocers; let i = index" class="bg-white hover:bg-gray-50">
+                        <td class="border border-slate-300 p-1">
+                            <div class="flex items-center gap-3 text-center">
+                                <span class="w-2">
+                                    {{i+1}}
+                                </span>
+                                <img [src]="socers.player.photo" class="w-8 h-8"/>
+                                <span>
+                                    {{socers.player.name}}
+                                </span>
+                            </div>
+                        </td>
+                        <td class="border border-slate-300 p-1">
+                            <div class="flex items-center gap-3 text-center">
+                                <img [src]="socers.statistics[0].team.logo" class="w-8 h-8"/>
+                                {{socers.statistics[0].team.name}}
+                            </div>
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].games.minutes}}' min
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].goals.total}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].penalty.scored}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].penalty.missed}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].goals.assists}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].cards.yellow}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].cards.red + socers.statistics[0].cards.yellowred}}
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="myForm.value.choice==3">
+            <table class="w-full text-xs text-left text-gray-500 border-collapse border border-slate-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr> 
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Joueur
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Equipe
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Minutes
+                        </th>
+                        <th  rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Buts
+                        </th>
+                        <th colspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Penalties
+                        </th>
+                        <th rowspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Assists
+                        </th>
+                        <th colspan="2" scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Cards
+                        </th>
+                    </tr>
+                    <tr> 
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Scored
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Missed
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Yellow
+                        </th>
+                        <th scope="col" class="py-1 px-2 text-center border border-slate-300">
+                            Red
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let socers of topassists; let i = index" class="bg-white hover:bg-gray-50">
+                        <td class="border border-slate-300 p-1">
+                            <div class="flex items-center gap-3 text-center">
+                                <span class="w-2">
+                                    {{i+1}}
+                                </span>
+                                <img [src]="socers.player.photo" class="w-8 h-8"/>
+                                <span>
+                                    {{socers.player.name}}
+                                </span>
+                            </div>
+                        </td>
+                        <td class="border border-slate-300 p-1">
+                            <div class="flex items-center gap-3 text-center">
+                                <img [src]="socers.statistics[0].team.logo" class="w-8 h-8"/>
+                                {{socers.statistics[0].team.name}}
+                            </div>
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].games.minutes}}' min
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].goals.total}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].penalty.scored}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].penalty.missed}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].goals.assists}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].cards.yellow}}
+                        </td>
+                        <td class="border border-slate-300">
+                            {{socers.statistics[0].cards.red + socers.statistics[0].cards.yellowred}}
+                        </td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+    
+    </div>
+    <!-- End Statistics -->
+</div>
+

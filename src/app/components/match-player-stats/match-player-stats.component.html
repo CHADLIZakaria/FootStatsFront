@@ -1,0 +1,1083 @@
+<div class="w-full px-5 mx-auto mt-2">
+    <table class="overflow-auto table-auto mt-2  text-xs text-left text-gray-500 dark:text-gray-400 border-collapse border border-slate-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr> 
+                <th scope="col" rowspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    Joueurs 
+                </th>
+                <th scope="col" colspan="6" class="py-3 px-2 text-center border border-slate-300">
+                    Match
+                </th>
+                <th scope="col" rowspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    offsides
+                </th>
+                <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    shots
+                </th>
+                <th scope="col" colspan="4" class="py-3 px-2 text-center border border-slate-300">
+                    goals
+                </th>
+                <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                    passes
+                </th>
+                <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                    tackles
+                </th>
+                <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    duels
+                </th>
+                <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                    dribbles
+                </th>
+                <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    fouls
+                </th>
+                <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                    cards
+                </th>
+                <th scope="col" colspan="5" class="py-3 px-2 text-center border border-slate-300">
+                    penalty
+                </th>
+            </tr>
+            <tr>
+                <!-- start games -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        minutes
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'minutes', 'DESC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'minutes')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        numbers
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'number', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'number', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        position
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'position', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'position', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        rating
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'rating', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'rating', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        captain
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'captain', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'captain', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        substitute
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('games', 'substitute', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('games', 'substitute', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end games -->
+
+                <!-- start shots -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        total
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('shots', 'total', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('shots', 'total', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        on
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('shots', 'on', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('shots', 'on', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end shots -->
+
+                <!-- start goals -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        total
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('goals', 'total', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('goals', 'total', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        conceded
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('goals', 'conceded', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('goals', 'conceded', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        assists
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('goals', 'assists', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('goals', 'assists', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        conceded
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('goals', 'conceded', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('goals', 'conceded', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                 <!-- end goals -->
+                
+                 <!-- start passes -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        total
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('passes', 'total', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('passes', 'total', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        key
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('passes', 'key', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('passes', 'key', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        accuracy
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('passes', 'accuracy', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('passes', 'accuracy', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end passes -->
+
+                <!-- start tackles -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        tackles
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('tackles', 'total', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('tackles', 'total', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        blocks
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('tackles', 'blocks', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('tackles', 'blocks', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        interceptions
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('tackles', 'interceptions', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('tackles', 'interceptions', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end tackles -->
+
+                <!-- start duels -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        total
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('duels', 'total', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('duels', 'total', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        won
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('duels', 'won', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('duels', 'won', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end duels -->
+
+                <!-- start dribbles -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        attempts
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('dribbles', 'attempts', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('dribbles', 'attempts', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        success
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('dribbles', 'success', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('dribbles', 'success', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        past
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('dribbles', 'past', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('dribbles', 'past', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                 <!-- end dribbles -->
+
+                <!-- start fouls -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        attempts
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('fouls', 'drawn', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('fouls', 'drawn', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        committed
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('fouls', 'committed', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('fouls', 'committed', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end fouls -->
+
+                <!-- start cards -->
+                 <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        yellow
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('cards', 'yellow', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('cards', 'yellow', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        red
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('cards', 'red', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('cards', 'red', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end cards -->
+
+                  <!-- start penalty -->
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        won
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('penalty', 'won', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('penalty', 'won', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        commited
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('penalty', 'commited', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('penalty', 'commited', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        scored
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('penalty', 'scored', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('penalty', 'scored', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        missed
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('penalty', 'missed', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('penalty', 'missed', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                    <span class="flex items-center gap-2">
+                        saved
+                        <span class="flex flex-col">
+                            <svg 
+                                (click)="orderBy('penalty', 'saved', 'ASC')" 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" 
+                                viewBox="0 0 24 24" 
+                                stroke-width="1.5" 
+                                stroke="currentColor" 
+                                class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+                            </svg>
+                            <svg 
+                            (click)="orderBy('penalty', 'saved', 'DESC')" 
+                            xmlns="http://www.w3.org/2000/svg" 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke-width="1.5" 
+                            stroke="currentColor" 
+                            class="w-3 h-3 cursor-pointer">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </span>
+                    </span>  
+                </th>
+                <!-- end penalty -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white hover:bg-gray-50" *ngFor="let players of players.players">
+                    <td class="border border-slate-300">
+                        <div class="flex flex-col items-center">
+                            <img [src]="players.player.photo" class="rounded-full w-10 h-10">
+                            <span class="text-center">{{players.player.name}}</span>
+    
+                        </div>
+                    </td>
+    
+                    <!-- start Game -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.minutes === null ?  '-' : players.statistics[0].games.minutes+"' min" }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.number}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.position}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.rating === null ?  '-' : players.statistics[0].games.rating}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.captain}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].games.substitute}}
+                    </td>
+                     <!-- start Game -->
+    
+                    <!-- start Offside -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].offsides === null ?  '-' : players.statistics[0].offsides}}
+                    </td>
+                    <!-- end Offside -->
+    
+                    <!-- start Shots -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].shots.total === null ?  '-' : players.statistics[0].shots.total}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].shots.on === null ? '-' : players.statistics[0].shots.on}}
+                    </td>
+                    <!-- end Shots -->
+    
+                    <!-- start Goals -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].goals.total === null ? '-': players.statistics[0].goals.total}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].goals.conceded}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].goals.assists === null ? '-': players.statistics[0].goals.assists}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].goals.saves === null ? '-': players.statistics[0].goals.saves}}
+                    </td>
+                    <!-- end Goals -->
+    
+                    <!-- start Passes -->
+                     <td class="text-center border border-slate-300">               
+                        {{players.statistics[0].passes.total === null ? '-': players.statistics[0].passes.total}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].passes.key === null ? '-': players.statistics[0].passes.key}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].passes.accuracy === null ? '-': players.statistics[0].passes.accuracy}}
+                    </td>
+                    <!-- end Passes -->
+    
+                    <!-- start Tackles -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].tackles.total === null ? '-': players.statistics[0].tackles.total}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].tackles.blocks === null ? '-': players.statistics[0].tackles.blocks}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].tackles.interceptions === null ? '-': players.statistics[0].tackles.interceptions}}
+                    </td>
+                    <!-- end Tackles -->
+    
+                     <!-- start Duels -->
+                     <td class="text-center border border-slate-300">
+                        {{players.statistics[0].duels.total === null ? '-': players.statistics[0].duels.total}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].duels.won === null ? '-': players.statistics[0].duels.won}}
+                    </td>
+                    <!-- end Duels -->
+    
+                     <!-- start Dribbles -->
+                     <td class="text-center border border-slate-300">
+                        {{players.statistics[0].dribbles.attempts === null ? '-': players.statistics[0].dribbles.attempts}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].dribbles.success === null ? '-': players.statistics[0].dribbles.success}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].dribbles.past === null ? '-': players.statistics[0].dribbles.past}}
+                    </td>
+                    <!-- end Dribbles -->
+    
+                    <!-- start Foules -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].fouls.drawn === null ? '-': players.statistics[0].fouls.drawn}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].fouls.committed === null ? '-': players.statistics[0].fouls.committed}}
+                    </td>
+                    <!-- end Foules -->
+    
+                    <!-- start cards -->
+                     <td class="text-center border border-slate-300">
+                        {{players.statistics[0].cards.yellow}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].cards.red}}
+                    </td>
+                    <!-- end cards -->
+    
+                    <!-- start penalty -->
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].penalty.won === null ? '-': players.statistics[0].penalty.won}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].penalty.commited === null ? '-': players.statistics[0].penalty.commited}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].penalty.scored}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].penalty.missed}}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{players.statistics[0].penalty.saved === null ? '-': players.statistics[0].penalty.saved}}
+                    </td>
+                    <!-- end penalty -->
+            </tr>   
+        </tbody>
+    </table>
+
+</div>

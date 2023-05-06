@@ -1,0 +1,54 @@
+<!--
+    <div class="w-3/4 mx-auto mt-2">
+    <div *ngFor="let match of headToHead; let i=index" 
+        class="relative w-full flex flex-col border-2 border-gray-200 relative gap-3 bg-white shadow-md my-2 mb-2">
+           
+            <div class="flex items-center gap-3 mx-2 my-2">
+                <img class="h-12" [src]="match.league.logo">
+                <span class="font-medium">{{ match.league.name }}</span>
+            </div>
+           
+            <div class="w-full transition delay-100 duration-100 ease-in-out flex justify-around relative gap-3 my-3 items-center">
+                <div class="flex flex-col flex-none w-32 text-gray-800 text-md text-center font-bold">
+                    <span>
+                        {{ match.fixture.date | date:'yyyy/MM/dd' }}
+                    </span>
+                    <span>
+                        {{ match.fixture.date | date:'hh:mm' }} {{match.fixture.timezone}}
+                    </span>
+                </div>
+                <div class="grow flex flex-col justify-center">
+                    <div  [routerLink]="['lineups', match.fixture.id]" class="w-3/4 flex justify-between  hover:bg-gray-100 cursor-pointer px-2.5 m-auto">
+                        <div class="flex-1 flex flex-col">
+                            <div class="flex items-center py-1">
+                                <div>
+                                    <img class="w-12 h-12 mr-3" [src]="match.teams.home.logo">
+                                </div>
+                                <div class="flex-1">
+                                    <h5 class="text-xl font-medium text-gray-900 dark:text-white">{{match.teams.home.name}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-2 grow flex justify-center items-center gap-x-2 score">
+                            <p>{{match.score.fulltime.home===null ? "-":match.score.fulltime.home}}</p>
+                            <p>{{match.score.fulltime.away===null ? "-":match.score.fulltime.away}}</p>
+                        </div>
+                        <div class="flex-1 flex justify-end  items-center py-1">
+                            <div>
+                                <h5 class="mr-3 text-xl font-medium text-gray-900 dark:text-white">{{match.teams.away.name}}</h5>
+                            </div>
+                            <div>
+                                <img class="w-12 h-12" [src]="match.teams.away.logo">
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+               
+            </div>
+    
+            
+           
+    </div>
+</div>
+-->

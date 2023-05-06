@@ -1,0 +1,407 @@
+<div class="mx-2">
+    <!-- Start Player Info -->
+    <div class="border border-2 flex flex-col gap-3 relative player-info drop-shadow-md"> 
+        <img [src]="player.player.photo" class="absolute top-1/2 -translate-y-1/2 player-img" />
+        <div class="flex flex-col w-full bg-gray-100">
+            <div class="flex justify-between items-center mt-1 mr-1">
+                <p class="font-bold">
+                     {{player.player.firstname}} {{player.player.lastname}}
+                </p>
+                <div class="text-xs border border-1 border-gray-400 flex items-center gap-2 p-1 bg-gray-100">
+                    <img [src]="player.statistics[0].team.logo" class="w-12 h-12" />
+                    <div class="flex flex-col">
+                        <div>
+                            {{player.statistics[0].team.name}}
+                        </div>
+                        <div class="flex gap-1 items-center">
+                            <img class="w-5 h-5" [src]="player.statistics[0].league.flag" />
+                            <span> 
+                                {{player.statistics[0].league.country}}
+                            </span>
+                        </div>
+                        <div class="flex gap-1 items-center">
+                            <img class="w-5 h-5" [src]="player.statistics[0].league.logo" />
+                            <span> 
+                                {{player.statistics[0].league.name}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-center p-2">
+            <ul class="flex gap-10">
+                <ul class="flex flex-col gap-2 text-xs">
+                    <li>
+                        Naissance (Age):
+                        {{player.player.birth.date}} ({{player.player.age}} ans)
+                    </li>
+                    <li>
+                        Lieu:
+                        {{player.player.birth.place}}, {{player.player.birth.country}}
+                    </li>
+                    <li>
+                        Nationnalité:
+                        {{player.player.nationality}}
+                    </li>
+                </ul>
+                <ul class="flex flex-col gap-2 text-xs">
+                    <li>
+                        Taille:
+                        {{player.player.height}}
+                    </li>
+                    <li>
+                        Poids:
+                        {{player.player.weight}}
+                    </li>
+                </ul>
+                <ul>
+    
+                </ul>
+            </ul>
+            <p class="flex gap-2 text-md ">
+                <span>#{{player.statistics[0].team.name}}</span>
+                <span>#{{player.statistics[0].league.country}}</span>
+                <span>#{{player.statistics[0].league.name}}</span>
+            </p>
+        </div>
+    
+    </div>
+    <!-- End Player Info -->
+    
+    <!-- Start Trophies & Transfers -->
+    <div class="flex gap-2 mt-2">
+        <!-- Start Player Trophies -->
+        <div class="w-full">
+            <div class="bg-gray-800 text-white p-3 rounded-t">
+                Trophies
+            </div>
+            <div class="flex flex-wrap gap-3 border-2 border-t-0">
+                <div *ngFor="let trophie of trophies" class="flex gap-1 items-center">
+                    <span class="text-gray-800 text-sm text-center font-bold">{{trophie[0]}}</span>
+                    <span class="text-gray-800 text-sm text-center font-semibold"> x{{trophie[1].length}}</span>(
+                    <span class="text-gray-800 text-sm text-center" *ngFor="let year of trophie[1]">{{year}}</span>)
+                </div>
+            </div>
+        </div>
+        <!-- End Player Trophies -->
+        <!-- Start Player Transfers -->
+        <div class="w-full">
+            <div class="bg-gray-800 text-white p-3 rounded-t">
+                Transfers
+            </div>
+            <div class="border-2 border-t-0">
+                <div *ngFor="let transfer of transfers.transfers" class="flex items-center">
+                    <span class="flex-none w-32 text-gray-800 text-md text-center font-bold py-1">{{transfer.date}}</span>
+                    <div class="grow flex flex-col justify-center">
+                        <div class="w-full flex justify-between p-1.5 m-auto">
+                            <div class="flex items-center gap-2 flex-1">
+                                <img [src]="transfer.teams.out.logo" class="w-8 h-8" />
+                                <span class="flex-1 grow">{{transfer.teams.out.name}}</span>
+                            </div>
+                            <div class="flex-1 text-center flex-col">
+                                {{transfer.type}}
+                                <img src="/assets/arrow-right.png" class="h-5 w-8 m-auto" />
+                            </div>
+                            <div class="flex-1 flex items-center gap-2 justify-end">
+                                <span class="flex-1 flex-none">{{transfer.teams.in.name}}</span>
+                                <img [src]="transfer.teams.in.logo" class="w-8 h-8" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Start Player Transfers -->
+    </div>
+    <!-- End Trophies & Transfers -->
+    
+    <!-- Start Statistics -->
+    <div class="w-full mt-2 overflow-x-auto ">
+        <div class="bg-gray-800 text-white p-3 rounded-t sticky left-0 ">
+            Trophies
+        </div>
+        <table class="text-xs text-left text-gray-500 border-collapse border border-slate-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr> 
+                    <th scope="col" rowspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        League
+                    </th>
+                    <th scope="col" rowspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        Team 
+                    </th>
+                    <th scope="col" colspan="4" class="py-3 px-2 text-center border border-slate-300">
+                        Games
+                    </th>
+                    <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                        substitutes
+                    </th>
+                    <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        shots
+                    </th>
+                    <th scope="col" colspan="4" class="py-3 px-2 text-center border border-slate-300">
+                        goals
+                    </th>
+                    <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                        passes
+                    </th>
+                    <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                        tackles
+                    </th>
+                    <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        duels
+                    </th>
+                    <th scope="col" colspan="3" class="py-3 px-2 text-center border border-slate-300">
+                        dribbles
+                    </th>
+                    <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        fouls
+                    </th>
+                    <th scope="col" colspan="2" class="py-3 px-2 text-center border border-slate-300">
+                        cards
+                    </th>
+                    <th scope="col" colspan="5" class="py-3 px-2 text-center border border-slate-300">
+                        penalty
+                    </th>
+                </tr>
+                <tr>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        appearences
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        lineups
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        minutes
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        rating
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        in
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        out
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        bench
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        total
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        on
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        total
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        conceded
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        assists
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        saves
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        total
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        key
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        accuracy
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        total
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        blocks
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        interceptions
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        total
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        won
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        attempts
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        success
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        past
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        drawn
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        committed
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        yellow
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        red
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        won
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        commited
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        scored
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        missed
+                    </th>
+                    <th scope="col" class="gap-1 py-3 px-2 border border-slate-300">
+                        saved
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white hover:bg-gray-50" *ngFor="let players of player.statistics">
+                    
+                    <td class="border border-slate-300">
+                        <div class="flex flex-col items-center">
+                            <img [src]="players.league.logo" class="w-10 h-10">
+                            <span class="text-center">{{players.league.name}}</span>
+                        </div>
+                    </td>
+                    <td class="border border-slate-300">
+                        <div class="flex flex-col items-center">
+                            <img [src]="players.team.logo" class=" w-10 h-10">
+                            <span class="text-center">{{players.team.name}}</span>
+                        </div>
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.games.appearences) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.games.lineups) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.games.minutes) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.games.rating) }}
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.substitutes.in) }}
+                        </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.substitutes.out) }}
+                        </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.substitutes.bench) }}
+                        </td>
+                    
+                     <td class="text-center border border-slate-300">
+                        {{ checkNull(players.shots.total) }}
+                        </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.shots.on) }}
+                        </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.goals.total) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.goals.conceded) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.goals.assists) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.goals.saves) }}
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.passes.total) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.passes.key) }}
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.passes.accuracy) }}
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.tackles.total) }}
+                        </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.tackles.blocks) }}
+                        </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.tackles.interceptions) }}
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.duels.total) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.duels.won) }} 
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.dribbles.attempts) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.dribbles.success) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.dribbles.past) }} 
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.fouls.drawn) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.fouls.committed) }} 
+                    </td>
+                    
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.cards.yellow) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.cards.red) }} 
+                    </td>
+                    
+                   
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.penalty.won) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.penalty.commited) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.penalty.scored) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.penalty.missed) }} 
+                    </td>
+                    <td class="text-center border border-slate-300">
+                        {{ checkNull(players.penalty.saved) }} 
+                    </td>
+                    
+    
+    
+                    
+                   
+            </tr>  
+               
+            </tbody>
+        </table>
+    
+    </div>
+    <!-- End Statistics -->
+</div>
+

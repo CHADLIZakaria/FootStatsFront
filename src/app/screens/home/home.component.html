@@ -1,0 +1,194 @@
+<div class="container mx-auto px-8 mt-3">
+    <!-- start filter form -->
+    <form class="flex justify-between items-center gap-5" [formGroup]="filterForm"> 
+        <div></div>
+        <div class="flex items-center gap-1">
+            <button 
+                (click)="onPrevDay()"
+                type="button" 
+                class="bg-gray-800 text-white h-full rounded-full hover:bg-red-700 hover:text-white px-3 py-2">
+                <div class="flex flex-row align-middle">
+                  <svg class="w-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+            </button>
+            <input formControlName="searchDate"  type="date" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+            <button 
+                (click)="onNextDay()"
+                type="button" 
+                class="bg-gray-800 text-white h-full rounded-full hover:bg-red-700 hover:text-white px-3 py-2">
+                <div class="flex flex-row align-middle">
+                  <svg class="w-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+            </button>
+        </div>
+        <div class="relative">
+            <button 
+                type="button" 
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-2 py-1 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                Filters
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" />
+                  </svg>
+            </button>
+        </div>
+    </form>
+    <!-- end filter form -->
+    <!-- start fixtures -->
+    <div *ngFor="let leagueFixture of matcheDay; let i=index" 
+        class="relative w-full flex flex-col border-2 mb-2 border-gray-200 relative gap-3 bg-white shadow-md pb-2">
+        <!-- start league -->
+        <div class="flex items-center gap-3 mx-2 my-2">
+            <img class="h-12 w-12" [src]="leagueFixture.league.logo">
+            <span class="font-medium">{{ leagueFixture.league.name }}</span>
+        </div>
+        <!-- end league -->
+        <!-- start match day -->
+        <div
+            *ngFor="let match of leagueFixture.fixtures" 
+            class="w-full transition delay-100 duration-100 ease-in-out flex justify-around relative gap-3 mt-3 items-center">
+            <div class="flex-none w-32 text-gray-800 text-md text-center font-bold py-8">
+                {{ match.fixture.date | date:'hh:mm' }} {{match.fixture.timezone}}
+            </div>
+            <div class="grow flex flex-col justify-center">
+                <div  [routerLink]="['lineups', match.fixture.id]" class="w-3/4 flex justify-between  hover:bg-gray-100 cursor-pointer p-2.5 m-auto">
+                    <div class="flex-1 flex flex-col">
+                        <div class="flex items-center py-1">
+                            <div>
+                                <img class="w-12 h-12 mr-3" [src]="match.teams.home.logo" alt="Bonnie image">
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="text-xl font-medium text-gray-900 dark:text-white">{{match.teams.home.name}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-2 grow flex justify-center items-center gap-x-2 score">
+                        <p>{{match.score.fulltime.home===null ? "-":match.score.fulltime.home}}</p>
+                        <p>{{match.score.fulltime.away===null ? "-":match.score.fulltime.away}}</p>
+                    </div>
+                    <div class="flex-1 flex justify-end  items-center py-1">
+                        <div>
+                            <h5 class="mr-3 text-xl font-medium text-gray-900 dark:text-white">{{match.teams.away.name}}</h5>
+                        </div>
+                        <div>
+                            <img class="w-12 h-12" [src]="match.teams.away.logo">
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="flex flex-none w-32 flex-col items-center mr-1 gap-2">
+                <span class="flex gap-5 items-center" *ngIf="getStatusMatchLive(match.fixture.status.short)">
+                    <span class="flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>           
+                    Live
+                </span>
+                {{getMatchStatus(match.fixture.status.short)}}
+                <h2>
+                    <button 
+                        (click)="toggleShowEvent(match.fixture.id)"
+                        type="button" 
+                        class="flex items-center justify-between w-full p-2 font-medium text-left text-gray-500 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800">
+                        <span>More</span>
+                        <svg [ngClass]="checkFixtureExists(match.fixture.id) ? 'rotate-180':''" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </h2>
+            </div>
+        </div>
+         <!-- end match day -->
+    </div>
+    <!-- end fixtures -->
+</div>
+
+<!--  <div *ngFor="let match of matcheDay; let i=index" 
+        [ngClass]="i == 0 ? 
+                    'border-t-2 mt-4' : 
+                    i <  matcheDay.length-1 ? 
+                        matcheDay[i-1].league.id === matcheDay[i].league.id ? 
+                            'border-t-0':
+                            'border-t-2 mt-2' : 
+                    'border-t-2 mt-2 mb-2'"
+        class="relative w-full flex flex-col border-l-2 border-r-2 border-gray-200 relative gap-3 bg-white shadow-md">
+      
+        <div class="flex items-center gap-3 mx-2 my-2" *ngIf="i === 0 ? true : matcheDay[i-1].league.id !== matcheDay[i].league.id ? true: false">
+            <img class="h-12" [src]="match.league.logo">
+            <span class="font-medium">{{ match.league.name }}</span>
+        </div>
+        <div class="w-full transition delay-100 duration-100 ease-in-out flex justify-around relative gap-3 mt-3 items-center">
+            <div class="flex-none w-32 text-gray-800 text-md text-center font-bold py-8">
+                {{ match.fixture.date | date:'hh:mm' }} {{match.fixture.timezone}}
+            </div>
+            <div class="grow flex flex-col justify-center">
+                <div  [routerLink]="['lineups', match.fixture.id]" class="w-3/4 flex justify-between  hover:bg-gray-100 cursor-pointer p-2.5 m-auto">
+                    <div class="flex-1 flex flex-col">
+                        <div class="flex items-center py-1">
+                            <div>
+                                <img class="w-12 h-12 mr-3" [src]="match.teams.home.logo" alt="Bonnie image">
+                            </div>
+                            <div class="flex-1">
+                                <h5 class="text-xl font-medium text-gray-900 dark:text-white">{{match.teams.home.name}} {{match.teams.home.id}} {{match.teams.away.id}} </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-2 grow flex justify-center items-center gap-x-2 score">
+                        <p>{{match.score.fulltime.home===null ? "-":match.score.fulltime.home}}</p>
+                        <p>{{match.score.fulltime.away===null ? "-":match.score.fulltime.away}}</p>
+                    </div>
+                    <div class="flex-1 flex justify-end  items-center py-1">
+                        <div>
+                            <h5 class="mr-3 text-xl font-medium text-gray-900 dark:text-white">{{match.teams.away.name}}</h5>
+                        </div>
+                        <div>
+                            <img class="w-12 h-12" [src]="match.teams.away.logo">
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="flex flex-none w-32 flex-col items-center mr-1 gap-2">
+                <span class="flex gap-5 items-center" *ngIf="getStatusMatchLive(match.fixture.status.short)">
+                    <span class="flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                    </span>           
+                    Live
+                </span>
+                {{getMatchStatus(match.fixture.status.short)}}
+                <h2>
+                    <button 
+                        (click)="toggleShowEvent(match.fixture.id)"
+                        type="button" 
+                        class="flex items-center justify-between w-full p-2 font-medium text-left text-gray-500 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-800 dark:border-gray-700 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-gray-800">
+                        <span>More</span>
+                        <svg [ngClass]="checkFixtureExists(match.fixture.id) ? 'rotate-180':''" class="w-6 h-6 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </h2>
+            </div>
+        </div>
+    
+        <div class="flex w-3/4 m-auto gap-5 px-32" *ngIf="checkFixtureExists(match.fixture.id)">
+            <div class="flex flex-1 flex-col gap-2 py-1 text-xs">
+                <div *ngFor="let event of findFixtureById(match.fixture.id)[0]">
+                    <app-match-event [event]="event"></app-match-event>
+                </div>
+            </div>
+            
+            <div class="flex flex-1 flex-col gap-2 py-1 text-xs items-end">
+                <div *ngFor="let event of findFixtureById(match.fixture.id)[1]">
+                    <app-match-event [event]="event"></app-match-event>
+                </div>
+            </div>
+        </div>   
+    </div> -->
+
+
+ <!-- end match of the day -->
