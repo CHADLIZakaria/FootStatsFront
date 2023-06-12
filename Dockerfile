@@ -7,4 +7,4 @@ RUN npm install
 COPY . .
 EXPOSE 4200
 
-CMD /usr/src/app/node_modules/.bin/ng serve --configuration=prod --host 0.0.0.0
+CMD /usr/src/app/node_modules/.bin/ng serve --configuration=production --host 0.0.0.0
